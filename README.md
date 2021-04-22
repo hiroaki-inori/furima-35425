@@ -25,12 +25,12 @@
 
 | Column             | Type       | Options                        |
 | ------             | ------     | -----------                    |
-| item-name          | string     | null: false                    |
-| item-text          | text       | null: false                    |
+| item_name          | string     | null: false                    |
+| item_text          | text       | null: false                    |
 | category_id        | integer    | null: false                    |
 | status_id          | integer    | null: false                    |
 | delivery_charge_id | integer    | null: false                    |
-| delivery_area_id   | integer    | null: false                    |
+| prefecture_id      | integer    | null: false                    |
 | shipping_day_id    | integer    | null: false                    |
 | price              | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
@@ -57,15 +57,15 @@
 
 ## deliverys テーブル
 
-| Column        | Type       | Options                        |
-| -------       | -------    | -----------                    |
-| postcode      | string     | null: false                    |
-| prefecture_id | string     | null: false                    |
-| city          | string     | null: false                    |
-| block         | string     | null: false                    |
-| building      | string     |                                |
-| tel           | string     | null: false                    |
-| buy           | references | null: false, foreign_key: true |
+| Column           | Type       | Options                        |
+| -------          | -------    | -----------                    |
+| postcode         | string     | null: false                    |
+| prefecture_id    | integer    | null: false                    |
+| city             | string     | null: false                    |
+| block            | string     | null: false                    |
+| building         | string     |                                |
+| tel              | string     | null: false                    |
+| buy              | references | null: false, foreign_key: true |
 
 ### Association
 
