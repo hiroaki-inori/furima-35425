@@ -47,13 +47,12 @@
 | -------        | -------    | -----------                    |
 | user           | references | null: false, foreign_key: true |
 | item           | references | null: false, foreign_key: true |
-| delivery       | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :delivery
+- has_one :delivery
 
 
 ## deliverys テーブル
@@ -70,4 +69,4 @@
 
 ### Association
 
-- has_many :buys
+- belongs_to :buy
