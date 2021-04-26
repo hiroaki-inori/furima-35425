@@ -17,6 +17,6 @@ class Item < ApplicationRecord
   validates :delivery_charge_id,  numericality: { other_than: 1 }
   validates :prefecture_id,       numericality: { other_than: 1 }
   validates :shipping_day_id,     numericality: { other_than: 1 }
-  validates :price,               presence: true
+  validates :price,               presence: true, numericality: { only_integer: true, greater_than: 300, less_than: 9999999}
 
 end
