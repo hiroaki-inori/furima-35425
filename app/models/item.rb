@@ -10,7 +10,7 @@ class Item < ApplicationRecord
 
   has_one_attached :image
 
-  validates :price,  numericality: { only_integer: true, greater_than: 299, less_than: 10000000 }
+  validates :price, numericality: { only_integer: true, greater_than: 299, less_than: 10_000_000 }
 
   with_options presence: true do
     validates :image
