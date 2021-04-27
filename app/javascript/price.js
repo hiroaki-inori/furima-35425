@@ -5,7 +5,7 @@ function price (){
     const price_fee = document.getElementById("add-tax-price");
     const profit = document.getElementById("profit");
     price_fee.innerHTML = Math.floor(inputValue * 0.1);
-    profit.innerHTML = inputValue - (inputValue * 0.1);
+    profit.innerHTML = Math.floor(inputValue - (inputValue * 0.1));
   });
 }
 
