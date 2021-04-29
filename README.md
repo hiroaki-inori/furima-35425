@@ -52,10 +52,10 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one :delivery
+- has_one :deliveries
 
 
-## deliverys テーブル
+## deliveries テーブル
 
 | Column           | Type       | Options                        |
 | -------          | -------    | -----------                    |
@@ -65,7 +65,7 @@
 | block            | string     | null: false                    |
 | building         | string     |                                |
 | tel              | string     | null: false                    |
-| buy              | references | null: false, foreign_key: true |
+| order            | references | null: false, foreign_key: true |
 
 ### Association
 
