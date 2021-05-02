@@ -22,14 +22,14 @@ RSpec.describe OrderDelivery, type: :model do
         expect(@order_delivery.errors.full_messages).to include("Postcode can't be blank")
       end
       it '郵便番号にハイフンがない場合は保存できない' do
-        @order_delivery.postcode = 1234567
+        @order_delivery.postcode = 1_234_567
         @order_delivery.valid?
-        expect(@order_delivery.errors.full_messages).to include("Postcode is invalid. Include hyphen(-)")
+        expect(@order_delivery.errors.full_messages).to include('Postcode is invalid. Include hyphen(-)')
       end
       it '郵便番号が全角の場合は保存できない' do
         @order_delivery.postcode = '１２３−４５６７'
         @order_delivery.valid?
-        expect(@order_delivery.errors.full_messages).to include("Postcode is invalid. Include hyphen(-)")
+        expect(@order_delivery.errors.full_messages).to include('Postcode is invalid. Include hyphen(-)')
       end
       it '都道府県が選択されていない場合は保存できない' do
         @order_delivery.prefecture_id = 1
@@ -37,29 +37,29 @@ RSpec.describe OrderDelivery, type: :model do
         expect(@order_delivery.errors.full_messages).to include("Prefecture can't be blank")
       end
       it '市区町村の値が空の場合は保存できない' do
-        @order_delivery.city = ""
+        @order_delivery.city = ''
         @order_delivery.valid?
         expect(@order_delivery.errors.full_messages).to include("City can't be blank")
       end
       it '番地の値が空の場合は保存できない' do
-        @order_delivery.block = ""
+        @order_delivery.block = ''
         @order_delivery.valid?
         expect(@order_delivery.errors.full_messages).to include("Block can't be blank")
       end
       it '電話番号が空の場合は保存できない' do
-        @order_delivery.tel = ""
+        @order_delivery.tel = ''
         @order_delivery.valid?
         expect(@order_delivery.errors.full_messages).to include("Tel can't be blank")
       end
       it '電話番号が数値ではない場合は保存できない' do
-        @order_delivery.tel = "０９０１２３４５６７８"
+        @order_delivery.tel = '０９０１２３４５６７８'
         @order_delivery.valid?
-        expect(@order_delivery.errors.full_messages).to include("Tel is invalid.")
+        expect(@order_delivery.errors.full_messages).to include('Tel is invalid.')
       end
       it '電話番号が11桁でない場合は保存できない' do
-        @order_delivery.tel = "0901234567"
+        @order_delivery.tel = '0901234567'
         @order_delivery.valid?
-        expect(@order_delivery.errors.full_messages).to include("Tel is invalid.")
+        expect(@order_delivery.errors.full_messages).to include('Tel is invalid.')
       end
       it 'user_idが紐づいていない場合は保存できない' do
         @order_delivery.user_id = nil
