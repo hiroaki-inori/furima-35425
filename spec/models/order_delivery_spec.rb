@@ -13,6 +13,11 @@ RSpec.describe OrderDelivery, type: :model do
       it 'すべての値が正しく入力されていれば保存できること' do
         expect(@order_delivery).to be_valid
       end
+      it '建物名が空の場合でも保存できること' do
+        @order_delivery.building = ''
+        @order_delivery.valid?
+        expect(@order_delivery).to be_valid
+      end
     end
 
     context '内容に問題がある場合' do
@@ -22,7 +27,7 @@ RSpec.describe OrderDelivery, type: :model do
         expect(@order_delivery.errors.full_messages).to include("Postcode can't be blank")
       end
       it '郵便番号にハイフンがない場合は保存できない' do
-        @order_delivery.postcode = 1_234_567
+        @order_delivery.postcode = '1234567'
         @order_delivery.valid?
         expect(@order_delivery.errors.full_messages).to include('Postcode is invalid. Include hyphen(-)')
       end
@@ -56,8 +61,18 @@ RSpec.describe OrderDelivery, type: :model do
         @order_delivery.valid?
         expect(@order_delivery.errors.full_messages).to include('Tel is invalid.')
       end
-      it '電話番号が11桁でない場合は保存できない' do
+      it '電話番号が10桁以下の場合は保存できない' do
         @order_delivery.tel = '0901234567'
+        @order_delivery.valid?
+        expect(@order_delivery.errors.full_messages).to include('Tel is invalid.')
+      end
+      it '電話番号が12桁以上の場合は保存できない' do
+        @order_delivery.tel = '090123456789'
+        @order_delivery.valid?
+        expect(@order_delivery.errors.full_messages).to include('Tel is invalid.')
+      end
+      it '電話番号が英数混合の場合は保存できない' do
+        @order_delivery.tel = 'a0901234567'
         @order_delivery.valid?
         expect(@order_delivery.errors.full_messages).to include('Tel is invalid.')
       end
