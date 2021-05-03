@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
   end
 
   private
-  
+
   def set_item
     @item = Item.find(params[:item_id])
   end
@@ -42,5 +42,4 @@ class OrdersController < ApplicationController
   def login_myitem_solditem
     redirect_to root_path if current_user.id == @item.user.id || @item.order
   end
-
 end
