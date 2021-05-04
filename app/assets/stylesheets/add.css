@@ -1,0 +1,9 @@
+/* 画像プレビュー機能 */
+
+#image-list {
+  margin-top: 15px;
+}
+#image-list img{
+  max-width: 170px;
+  max-height: 200px;
+}
