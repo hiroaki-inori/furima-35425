@@ -29,6 +29,35 @@
 
 .login-google a:hover{
   background-image: url("/assets/google-logo.png");
-  background-color: #FFE4E1;
+  background-color: hsl(0, 20%, 88%);
 }
 
+/* コメント欄 */
+#comments{
+  padding: 10px;
+  margin-bottom: 15px;
+  text-align: left;
+  line-height: 140%;
+}
+#comments .comment{
+  display: block;
+  border-bottom: 1px dashed #eee;
+  padding: 8px 0px;
+}
+#comment-nil{
+  border: none;
+  text-align: center;
+  margin: 0 auto;
+}
+#comments .name-date{
+  font-size: 13px;
+  font-style: italic;
+  color: #ccc;
+  margin-left: 10px;
+}
+.comment-title{
+  color: #fff;
+  background-color: #3CCACE;
+  padding:10px;
+  margin-bottom: 10px;
+}
