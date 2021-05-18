@@ -65,6 +65,7 @@
         </tr>
       </tbody>
     </table>
+    <div id="buttons_<%= @item.id %>" class="buttons"><%= render partial: 'likes/like', locals: { like_count: @like_count } %></div>
     <div class="option">
       <div class="favorite-btn">
         <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>

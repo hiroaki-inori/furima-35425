@@ -23,6 +23,7 @@ class ItemsController < ApplicationController
   def show
     @comments = @item.comments.includes(:user)
     @comment = Comment.new
+    @like_count = Like.where(item_id: params[:id]).count
   end
 
   def edit
