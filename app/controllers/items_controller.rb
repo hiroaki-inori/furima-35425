@@ -24,7 +24,6 @@ class ItemsController < ApplicationController
     @comments = @item.comments.includes(:user)
     @comment = Comment.new
     @like_count = Like.where(item_id: params[:id]).count
-    # binding.pry
   end
 
   def edit
