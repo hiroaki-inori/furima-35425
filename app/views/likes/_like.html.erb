@@ -1,0 +1,12 @@
+<%# <% binding.pry %> %>
+<% if @item.likes.where(user_id: current_user.id).exists? %>
+<div class="like_button_on">
+    <%= link_to "いいね済み", item_like_path(item_id: @item.id), {method: "delete", remote: true} %>
+    <%= @like_count %>
+</div>
+<% else %>
+<div class="like_button">
+    <%= link_to "いいね", item_likes_path(item_id: @item.id), {method: "post", remote: true} %>
+    <%= @like_count %>
+</div>
+<% end %>

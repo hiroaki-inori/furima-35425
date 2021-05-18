@@ -87,3 +87,17 @@
 
 - belongs_to :user
 - belongs_to :item
+
+
+## likes テーブル
+
+| Column     | Type       | Options                        |
+| -------    | -------    | -----------                    |
+| item_id    | integer    | null: false                    |
+| user_id    | integer    | null: false                    |
+
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
