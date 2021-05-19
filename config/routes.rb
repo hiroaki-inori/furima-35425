@@ -10,6 +10,6 @@ Rails.application.routes.draw do
     resources :likes, only: [:destroy]
   end
   post 'like/:id' => 'likes#create', as: 'create_like'
-  # post "likes/:item_id/create", to: "likes#create", constraints: {item_id: /\d+/}, as: :likes_create
-  # post "likes/:item_id/delete", to: "likes#delete", constraints: {item_id: /\d+/}, as: :likes_delete
+  post 'comment_like/:id' => 'comment_likes#create', as: 'create_comment_like'
+  delete 'comment_like/:id' => 'comment_likes#destroy', as: 'destroy_comment_like'
 end
