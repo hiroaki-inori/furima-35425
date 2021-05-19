@@ -86,7 +86,14 @@
         <p id="comment-nil">※コメント募集中</p>
       <% end %>
       <% @comments.reverse_each do |comment| %>
-        <p class="comment"><%= comment.text %> <span class="name-date"><%= comment.user.nickname %> (<%= comment.created_at.strftime('%Y/%m/%d %H:%M') %>)</span></p>
+        <p class="comment">
+          <%= comment.text %> <span class="name-date"><%= comment.user.nickname %> (<%= comment.created_at.strftime('%Y/%m/%d %H:%M') %>)</span>
+          <% if current_user.liked_by?(comment.id) %>
+          <span><%= link_to 'いいねを外す', destroy_comment_like_path(comment), method: :DELETE %><%= comment.comment_likes.count %></span>
+          <% else %>
+          <span><%= link_to 'いいね', create_comment_like_path(comment), method: :POST %><%= comment.comment_likes.count %></span>
+          <% end %> 
+        </p>
       <% end %>
     </div>
     <%= form_with(model: [@item, @comment], local: true) do |f|%>

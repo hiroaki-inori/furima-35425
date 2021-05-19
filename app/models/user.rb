@@ -23,6 +23,7 @@ class User < ApplicationRecord
   has_many :sns_credentials
   has_many :comments
   has_many :likes
+  has_many :comment_likes
 
   def self.from_omniauth(auth)
     sns = SnsCredential.where(provider: auth.provider, uid: auth.uid).first_or_create
@@ -38,5 +39,10 @@ class User < ApplicationRecord
       sns.save
     end
     { user: user, sns: sns }
+  end
+
+  # 「いいね」を既にしているか判断
+  def liked_by?(comment_id)
+    comment_likes.where(comment_id: comment_id).exists?
   end
 end
