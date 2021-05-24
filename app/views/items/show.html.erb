@@ -65,11 +65,16 @@
         </tr>
       </tbody>
     </table>
-    <div id="buttons_<%= @item.id %>" class="buttons"><%= render partial: 'likes/like', locals: { like_count: @like_count } %></div>
     <div class="option">
+      <%# <div class="favorite-btn"> %>
+        <%# <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
+        <%# <span>お気に入り 0</span> %>
+      <%# </div> %>
       <div class="favorite-btn">
         <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
-        <span>お気に入り 0</span>
+          <div id="buttons_<%= @item.id %>" class="buttons">
+            <%= render partial: 'likes/like', locals: { like_count: @like_count } %>
+          </div>
       </div>
       <div class="report-btn">
         <%= image_tag "flag.png" ,class:"report-flag-icon" ,width:"20",height:"20"%>
@@ -88,25 +93,23 @@
       <% @comments.reverse_each do |comment| %>
         <p class="comment">
           <%= comment.text %> <span class="name-date"><%= comment.user.nickname %> (<%= comment.created_at.strftime('%Y/%m/%d %H:%M') %>)</span>
-          <% if current_user.liked_by?(comment.id) %>
-          <span><%= link_to 'いいねを外す', destroy_comment_like_path(comment), method: :DELETE %><%= comment.comment_likes.count %></span>
-          <% else %>
-          <span><%= link_to 'いいね', create_comment_like_path(comment), method: :POST %><%= comment.comment_likes.count %></span>
-          <% end %> 
+
         </p>
       <% end %>
     </div>
-    <%= form_with(model: [@item, @comment], local: true) do |f|%>
-    <%= f.text_area :text, class:"comment-text" %>
-      <p class="comment-warn">
-        相手のことを考え丁寧なコメントを心がけましょう。
-        <br>
-        不快な言葉遣いなどは利用制限や退会処分となることがあります。
-      </p>
-      <button type="submit" class="comment-btn">
-        <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
-        <span>コメントする<span>
-      </button>
+    <% if user_signed_in? %>
+      <%= form_with(model: [@item, @comment], local: true) do |f|%>
+      <%= f.text_area :text, class:"comment-text" %>
+        <p class="comment-warn">
+          相手のことを考え丁寧なコメントを心がけましょう。
+          <br>
+          不快な言葉遣いなどは利用制限や退会処分となることがあります。
+        </p>
+        <button type="submit" class="comment-btn">
+          <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
+          <span>コメントする<span>
+        </button>
+      <% end %>
     <% end %>
   </div>
   <div class="links">
