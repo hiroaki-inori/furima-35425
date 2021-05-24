@@ -1,7 +1,14 @@
-  <%= link_to "いいねを外す", item_like_path(item_id: @item.id), {method: "delete", remote: true} %>
-  <%#= link_to "いいねする", item_likes_path(item_id: @item.id), {method: "post", remote: true} %>
-  <%= link_to "いいねする", create_like_path(item_id: @item.id), {method: "post", remote: true} %>
-  <%= @like_count %>
+<% if user_signed_in? %>
+  <% if @item.likes.where(user_id: current_user.id).exists? %>
+    <%= link_to "いいねを外す", item_like_path(item_id: @item.id), {method: "delete", remote: true} %>
+    <%= @like_count %>
+  <% else %>
+    <%= link_to "いいねする", create_like_path(item_id: @item.id), {method: "post", remote: true} %>
+    <%= @like_count %>
+  <% end %>
+<% else %>
+  いいね <%= @like_count %>
+<% end %>
 
 <%# <% if @item.likes.where(user_id: current_user.id).exists? %>
 <%#   <%= link_to "いいねを外す", item_like_path(item_id: @item.id), {method: "delete", remote: true} %>

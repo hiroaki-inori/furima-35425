@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     resources :comments, only: [:create]
     resources :likes, only: [:destroy]
   end
+
+  resources :users, only: [:show]
+
   post 'like/:id' => 'likes#create', as: 'create_like'
   post 'comment_like/:id' => 'comment_likes#create', as: 'create_comment_like'
   delete 'comment_like/:id' => 'comment_likes#destroy', as: 'destroy_comment_like'
